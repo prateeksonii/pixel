@@ -17,17 +17,22 @@ export default function SignupForm() {
   });
 
   const onSubmit: SubmitHandler<ISignupValidator> = async (data) => {
-    await fetch('/api/auth/signup', {
+    const res = await fetch('/api/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
+    });
+
+    if (res.status !== 201) {
+      
+    }
   };
 
   return (
     <form
+      method="POST"
       className="w-2/3 mt-4 flex flex-col gap-3"
       onSubmit={handleSubmit(onSubmit)}
     >
